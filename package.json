@@ -1,0 +1,73 @@
+{
+  "name": "@gaddario98/react-core",
+  "version": "1.0.11",
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@types/rollup-plugin-peer-deps-external": "^2",
+    "babel-plugin-react-compiler": "1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "rollup": "^4.40.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "typescript": "5.8.3"
+  },
+  "peerDependencies": {
+    "@gaddario98/react-auth": "1.0.11",
+    "@gaddario98/react-form": "1.0.15",
+    "@gaddario98/react-localization": "1.0.12",
+    "@gaddario98/react-pages": "1.0.16",
+    "@gaddario98/react-providers": "1.0.12",
+    "@gaddario98/react-queries": "1.0.16",
+    "@gaddario98/react-state": "1.0.10",
+    "@gaddario98/utiles": "1.0.10",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "exports": {
+    "./auth": "./dist/auth/index.mjs",
+    "./form": "./dist/form/index.mjs",
+    "./localization": "./dist/localization/index.mjs",
+    "./pages": "./dist/pages/index.mjs",
+    "./providers": "./dist/providers/index.mjs",
+    "./queries": "./dist/queries/index.mjs",
+    "./state": "./dist/state/index.mjs",
+    "./utiles": "./dist/utiles/index.mjs",
+    ".": "./dist/index.mjs"
+  },
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gaddario98/react-core"
+  },
+  "keywords": [
+    "react",
+    "auth",
+    "queries",
+    "state",
+    "pages",
+    "localization",
+    "providers",
+    "gaddario98"
+  ],
+  "author": "Giosuè Addario",
+  "bugs": {
+    "url": "https://github.com/gaddario98/react-core/issues"
+  },
+  "homepage": "https://github.com/gaddario98/react-core#readme"
+}
