@@ -17,10 +17,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
+          # No cache since individual packages don't have lock files
       
       - name: Install dependencies
-        run: npm ci
+        run: npm install
       
       - name: Build
         run: npm run build
@@ -41,10 +41,10 @@ jobs:
         with:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org'
-          cache: 'npm'
+          # No cache since individual packages don't have lock files
       
       - name: Install dependencies
-        run: npm ci
+        run: npm install
       
       - name: Build
         run: npm run build
@@ -66,10 +66,10 @@ jobs:
         with:
           node-version: '18'
           registry-url: 'https://npm.pkg.github.com'
-          cache: 'npm'
+          # No cache since individual packages don't have lock files
       
       - name: Install dependencies
-        run: npm ci
+        run: npm install
       
       - name: Build  
         run: npm run build
