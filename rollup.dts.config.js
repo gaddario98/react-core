@@ -1,13 +1,6 @@
-import { createRequire } from "module";
-import { 
-  createMultiEntryConfig, 
-  createTypeDeclarations 
-} from "../../rollup.common.config.js";
+import { createTypeDeclarations } from "../../rollup.common.config.js";
 
-const require = createRequire(import.meta.url);
-const pkg = require("./package.json");
-
-// Definizione degli entry points
+// Definizione degli entry points (deve essere sincronizzata con rollup.config.js)
 const entries = [
   { name: "index", input: "index.ts" },
   { name: "index", input: "index.ts" },
@@ -21,7 +14,5 @@ const entries = [
   { name: "utiles", input: "utiles/index.ts" },
 ];
 
-// Configurazione per i file JavaScript
-export default createMultiEntryConfig(pkg, entries, { 
-  isReactNative: false,
-});
+// Configurazione per le dichiarazioni TypeScript
+export default createTypeDeclarations(entries);

@@ -10,7 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c rollup.config.js && rollup -c rollup.dts.config.js",
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
@@ -43,6 +43,12 @@
     "react": ">=18.0.0 <20.0.0"
   },
   "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
     "./auth": {
       "types": "./dist/auth/index.d.ts",
       "import": "./dist/auth/index.mjs",
@@ -90,12 +96,6 @@
       "import": "./dist/utiles/index.mjs",
       "require": "./dist/utiles/index.js",
       "default": "./dist/utiles/index.js"
-    },
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "default": "./dist/index.js"
     }
   },
   "sideEffects": false,
