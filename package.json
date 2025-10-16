@@ -1,20 +1,22 @@
 {
   "name": "@gaddario98/react-core",
-  "version": "1.0.11",
-  "main": "dist/index.mjs",
+  "version": "1.0.15",
+  "type": "module",
+  "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "type": "module",
   "license": "MIT",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-typescript": "^12.1.2",
     "@types/react": "^19.2.0",
@@ -27,33 +29,79 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "typescript": "5.8.3"
   },
+  "dependencies": {
+    "@gaddario98/react-auth": "^1.0.14",
+    "@gaddario98/react-form": "^1.0.18",
+    "@gaddario98/react-localization": "^1.0.15",
+    "@gaddario98/react-pages": "^1.0.19",
+    "@gaddario98/react-providers": "^1.0.15",
+    "@gaddario98/react-queries": "^1.0.19",
+    "@gaddario98/react-state": "^1.0.13",
+    "@gaddario98/utiles": "^1.0.13"
+  },
   "peerDependencies": {
-    "@gaddario98/react-auth": "1.0.11",
-    "@gaddario98/react-form": "1.0.15",
-    "@gaddario98/react-localization": "1.0.12",
-    "@gaddario98/react-pages": "1.0.16",
-    "@gaddario98/react-providers": "1.0.12",
-    "@gaddario98/react-queries": "1.0.16",
-    "@gaddario98/react-state": "1.0.10",
-    "@gaddario98/utiles": "1.0.10",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react": ">=18.0.0 <20.0.0"
   },
   "exports": {
-    "./auth": "./dist/auth/index.mjs",
-    "./form": "./dist/form/index.mjs",
-    "./localization": "./dist/localization/index.mjs",
-    "./pages": "./dist/pages/index.mjs",
-    "./providers": "./dist/providers/index.mjs",
-    "./queries": "./dist/queries/index.mjs",
-    "./state": "./dist/state/index.mjs",
-    "./utiles": "./dist/utiles/index.mjs",
-    ".": "./dist/index.mjs"
+    "./auth": {
+      "types": "./dist/auth/index.d.ts",
+      "import": "./dist/auth/index.mjs",
+      "require": "./dist/auth/index.js",
+      "default": "./dist/auth/index.js"
+    },
+    "./form": {
+      "types": "./dist/form/index.d.ts",
+      "import": "./dist/form/index.mjs",
+      "require": "./dist/form/index.js",
+      "default": "./dist/form/index.js"
+    },
+    "./localization": {
+      "types": "./dist/localization/index.d.ts",
+      "import": "./dist/localization/index.mjs",
+      "require": "./dist/localization/index.js",
+      "default": "./dist/localization/index.js"
+    },
+    "./pages": {
+      "types": "./dist/pages/index.d.ts",
+      "import": "./dist/pages/index.mjs",
+      "require": "./dist/pages/index.js",
+      "default": "./dist/pages/index.js"
+    },
+    "./providers": {
+      "types": "./dist/providers/index.d.ts",
+      "import": "./dist/providers/index.mjs",
+      "require": "./dist/providers/index.js",
+      "default": "./dist/providers/index.js"
+    },
+    "./queries": {
+      "types": "./dist/queries/index.d.ts",
+      "import": "./dist/queries/index.mjs",
+      "require": "./dist/queries/index.js",
+      "default": "./dist/queries/index.js"
+    },
+    "./state": {
+      "types": "./dist/state/index.d.ts",
+      "import": "./dist/state/index.mjs",
+      "require": "./dist/state/index.js",
+      "default": "./dist/state/index.js"
+    },
+    "./utiles": {
+      "types": "./dist/utiles/index.d.ts",
+      "import": "./dist/utiles/index.mjs",
+      "require": "./dist/utiles/index.js",
+      "default": "./dist/utiles/index.js"
+    },
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
   },
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/gaddario98/react-core"
+    "url": "git+https://github.com/gaddario98/react-core"
   },
   "keywords": [
     "react",
