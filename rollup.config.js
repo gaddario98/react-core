@@ -10,8 +10,7 @@ const pkg = require("./package.json");
 // Definizione degli entry points
 const entries = [
   { name: "index", input: "index.ts" },
-  { name: "index", input: "index.ts" },
-  { name: "auth", input: "auth/index.ts" },
+    { name: "auth", input: "auth/index.ts" },
   { name: "form", input: "form/index.ts" },
   { name: "localization", input: "localization/index.ts" },
   { name: "pages", input: "pages/index.ts" },
