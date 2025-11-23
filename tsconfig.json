@@ -13,5 +13,5 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "include": ["./", "../react-native-state", "../react-native-tabs"]
+  "include": ["./"]
 }
