@@ -1,6 +1,6 @@
 {
   "name": "@gaddario98/react-core",
-  "version": "2.0.0",
+  "version": "2.0.5",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -30,11 +30,11 @@
     "typescript": "5.8.3"
   },
   "dependencies": {
-    "@gaddario98/react-form": "^2.0.0",
-    "@gaddario98/react-localization": "^2.0.0",
-    "@gaddario98/react-pages": "^2.0.3",
-    "@gaddario98/react-queries": "^2.0.0",
-    "@gaddario98/react-state": "^2.0.0"
+    "@gaddario98/react-form": "^2.0.3",
+    "@gaddario98/react-localization": "^2.0.1",
+    "@gaddario98/react-pages": "^3.0.1",
+    "@gaddario98/react-queries": "^2.0.1",
+    "@gaddario98/react-state": "^2.0.1"
   },
   "peerDependencies": {
     "react": ">=18.0.0 <20.0.0"
@@ -63,6 +63,12 @@
       "import": "./dist/localization/index.mjs",
       "require": "./dist/localization/index.js",
       "default": "./dist/localization/index.js"
+    },
+    "./notifications": {
+      "types": "./dist/notifications/index.d.ts",
+      "import": "./dist/notifications/index.mjs",
+      "require": "./dist/notifications/index.js",
+      "default": "./dist/notifications/index.js"
     },
     "./pages": {
       "types": "./dist/pages/index.d.ts",
