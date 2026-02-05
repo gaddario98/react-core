@@ -1,0 +1,15 @@
+[submodule "packages/react-base-form"]
+	path = packages/react-base-core/form
+	url = https://github.com/gaddario98/react-base-form.git
+[submodule "packages/react-base-localization"]
+	path = packages/react-base-core/localization
+	url = https://github.com/gaddario98/react-base-localization.git
+[submodule "packages/react-base-pages"]
+	path = packages/react-base-core/pages
+	url = https://github.com/gaddario98/react-base-pages.git
+[submodule "packages/react-base-queries"]
+	path = packages/react-base-core/queries
+	url = https://github.com/gaddario98/react-base-queries.git
+[submodule "packages/react-base-state"]
+	path = packages/react-base-core/state
+	url = https://github.com/gaddario98/react-base-state.git
