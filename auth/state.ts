@@ -1,5 +1,5 @@
-import { atomStateGenerator } from '@gaddario98/react-state'
-import type { AuthState } from '.'
+import { atomStateGenerator } from "../state";
+import type { AuthState } from "./types";
 
 const {
   atom: authAtom,
@@ -7,7 +7,7 @@ const {
   useState: useAuthState,
 } = atomStateGenerator<AuthState | null>({
   defaultValue: null,
-  key: 'reactAuthStore',
+  key: "reactAuthStore",
   persist: true,
-})
-export { authAtom, useAuthValue, useAuthState }
+});
+export { authAtom, useAuthValue, useAuthState };

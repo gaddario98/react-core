@@ -1,15 +1,12 @@
 import { useEffect } from "react";
-import { useFormConfigState } from "../form/index";
-import {
-  useLocalizationConfigState,
-  useTranslation,
-} from "../localization/index";
-import { usePageConfigState } from "../pages/index";
-import { useApiConfigState } from "../queries/index";
-import type { FormConfigProps } from "../form/index";
-import type { LocalizationConfigProps } from "../localization/index";
-import type { PageConfigProps } from "../pages/index";
-import type { ApiConfig } from "../queries/index";
+import { useFormConfigState } from "../form";
+import { useLocalizationConfigState, useTranslation } from "../localization";
+import { usePageConfigState } from "../pages";
+import { useApiConfigState } from "../queries";
+import type { FormConfigProps } from "../form";
+import type { LocalizationConfigProps } from "../localization";
+import type { PageConfigProps } from "../pages";
+import type { ApiConfig } from "../queries";
 import { AuthState, useAuthValue } from "../auth";
 import { useNotification } from "../notifications";
 
@@ -81,5 +78,5 @@ export const useCoreConfig = ({
       ...apiConfig,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [apiConfig, showNotification, JSON.stringify(auth)]);
+  }, [apiConfig, auth?.isLogged, auth?.token, showNotification]);
 };

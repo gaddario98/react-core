@@ -1,5 +1,5 @@
-import { atomStateGenerator } from '@gaddario98/react-state';
-import type { NotificationMessage } from './types';
+import { atomStateGenerator } from "../state";
+import type { NotificationMessage } from "./types";
 
 const {
   atom: notificationAtom,
@@ -7,7 +7,7 @@ const {
   useState: useNotificationState,
 } = atomStateGenerator<NotificationMessage | null>({
   defaultValue: null,
-  key: 'reactNotificationAtom',
+  key: "reactNotificationAtom",
   persist: false,
 });
 

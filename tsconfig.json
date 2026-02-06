@@ -11,7 +11,15 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@gaddario98/react-form": ["./form/index.ts"],
+      "@gaddario98/react-state": ["./state/index.ts"],
+      "@gaddario98/react-queries": ["./queries/index.ts"],
+      "@gaddario98/react-localization": ["./localization/index.ts"],
+      "@gaddario98/react-pages": ["./pages/index.ts"]
+    }
   },
   "include": ["./"]
 }
