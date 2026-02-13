@@ -12,10 +12,10 @@ const entries = [
   { name: "localization", input: "localization/index.ts" },
   { name: "notifications", input: "notifications/index.ts" },
   { name: "pages", input: "pages/index.ts" },
-  { name: "providers", input: "providers/index.ts" },
   { name: "queries", input: "queries/index.ts" },
   { name: "state", input: "state/index.ts" },
   { name: "utiles", input: "utiles/index.ts" },
+  { name: "providers", input: "providers/index.ts" },
 ];
 
 // Mappa @gaddario98/* -> path relativo dell'entry corrispondente

@@ -23,7 +23,7 @@ const entries = [
 
 // Mappa: path assoluto di ogni entry -> nome entry
 const entryAbsPaths = new Map(
-  entries.map((e) => [path.resolve(__dirname, e.input), e.name])
+  entries.map((e) => [path.resolve(__dirname, e.input), e.name]),
 );
 
 // Subdirectory che sono sub-package (con proprio package.json)
