@@ -44,60 +44,70 @@
   },
   "exports": {
     ".": {
+      "source": "./index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js",
       "default": "./dist/index.js"
     },
     "./auth": {
+      "source": "./auth/index.ts",
       "types": "./dist/auth/index.d.ts",
       "import": "./dist/auth/index.mjs",
       "require": "./dist/auth/index.js",
       "default": "./dist/auth/index.js"
     },
     "./form": {
+      "source": "./form/index.ts",
       "types": "./dist/form/index.d.ts",
       "import": "./dist/form/index.mjs",
       "require": "./dist/form/index.js",
       "default": "./dist/form/index.js"
     },
     "./localization": {
+      "source": "./localization/index.ts",
       "types": "./dist/localization/index.d.ts",
       "import": "./dist/localization/index.mjs",
       "require": "./dist/localization/index.js",
       "default": "./dist/localization/index.js"
     },
     "./notifications": {
+      "source": "./notifications/index.ts",
       "types": "./dist/notifications/index.d.ts",
       "import": "./dist/notifications/index.mjs",
       "require": "./dist/notifications/index.js",
       "default": "./dist/notifications/index.js"
     },
     "./pages": {
+      "source": "./pages/index.ts",
       "types": "./dist/pages/index.d.ts",
       "import": "./dist/pages/index.mjs",
       "require": "./dist/pages/index.js",
       "default": "./dist/pages/index.js"
     },
     "./providers": {
+      "source": "./providers/index.ts",
       "types": "./dist/providers/index.d.ts",
       "import": "./dist/providers/index.mjs",
       "require": "./dist/providers/index.js",
       "default": "./dist/providers/index.js"
     },
     "./queries": {
+      "source": "./queries/index.ts",
       "types": "./dist/queries/index.d.ts",
       "import": "./dist/queries/index.mjs",
       "require": "./dist/queries/index.js",
       "default": "./dist/queries/index.js"
     },
     "./state": {
+      "source": "./state/index.ts",
       "types": "./dist/state/index.d.ts",
       "import": "./dist/state/index.mjs",
       "require": "./dist/state/index.js",
       "default": "./dist/state/index.js"
     },
     "./utiles": {
+      "source": "./utiles/index.ts",
       "types": "./dist/utiles/index.d.ts",
       "import": "./dist/utiles/index.mjs",
       "require": "./dist/utiles/index.js",

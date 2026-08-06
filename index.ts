@@ -2,6 +2,7 @@ export * from "./auth";
 export * from "./pages/index";
 export * from "./form/index";
 export * from "./localization/index";
+export * from "./notifications";
 export * from "./providers";
 export * from "./queries/index";
 export * from "./state/index";
