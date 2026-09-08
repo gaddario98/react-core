@@ -1,8 +1,9 @@
 import { atomStateGenerator } from "../state";
+import type { PrimitiveAtom } from "../state";
 import type { AuthState } from "./types";
 
 const {
-  atom: authAtom,
+  atom: _authAtom,
   useValue: useAuthValue,
   useState: useAuthState,
 } = atomStateGenerator<AuthState | null>({
@@ -10,4 +11,6 @@ const {
   key: "reactAuthStore",
   persist: true,
 });
+const authAtom: PrimitiveAtom<AuthState | null> = _authAtom;
+
 export { authAtom, useAuthValue, useAuthState };

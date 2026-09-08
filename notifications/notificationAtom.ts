@@ -1,8 +1,9 @@
 import { atomStateGenerator } from "../state";
+import type { PrimitiveAtom } from "../state";
 import type { NotificationMessage } from "./types";
 
 const {
-  atom: notificationAtom,
+  atom: _notificationAtom,
   useValue: useNotificationValue,
   useState: useNotificationState,
 } = atomStateGenerator<NotificationMessage | null>({
@@ -10,5 +11,7 @@ const {
   key: "reactNotificationAtom",
   persist: false,
 });
+
+const notificationAtom: PrimitiveAtom<NotificationMessage | null> = _notificationAtom;
 
 export { notificationAtom, useNotificationValue, useNotificationState };
