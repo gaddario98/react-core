@@ -539,7 +539,7 @@ See [Quick Start](#quick-start--unified-configuration) for usage.
 
 | Source | Target | What |
 |---|---|---|
-| `localization` | `form`, `pages` | `translateText` function |
+| `localization` | `form` | `translateText` function |
 | `notifications` | `form`, `queries` | `showNotification` handler |
 | `auth` | `queries` | `Authorization` header (Bearer token) |
 | `auth` | `queries` | `validateAuthFn` (auth validation) |
