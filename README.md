@@ -8,25 +8,29 @@ A modular, type-safe React framework that unifies state management, forms, data 
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Installation](#installation)
-- [Architecture](#architecture)
-- [Quick Start — Unified Configuration](#quick-start--unified-configuration)
-- [Modules](#modules)
-  - [State (`/state`)](#state-state)
-  - [Auth (`/auth`)](#auth-auth)
-  - [Notifications (`/notifications`)](#notifications-notifications)
-  - [Localization (`/localization`)](#localization-localization)
-  - [Form (`/form`)](#form-form)
-  - [Queries (`/queries`)](#queries-queries)
-  - [Pages (`/pages`)](#pages-pages)
-  - [Providers (`/providers`)](#providers-providers)
-  - [Utilities (`/utiles`)](#utilities-utiles)
-  - [Config (`/config`)](#config-config)
-- [Entry Points](#entry-points)
-- [Cross-Platform Support](#cross-platform-support)
-- [TypeScript Support](#typescript-support)
-- [Contributing](#contributing)
+- [@gaddario98/react-core](#gaddario98react-core)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Installation](#installation)
+    - [Peer Dependencies](#peer-dependencies)
+  - [Architecture](#architecture)
+  - [Quick Start — Unified Configuration](#quick-start--unified-configuration)
+  - [Modules](#modules)
+    - [State (`/state`)](#state-state)
+    - [Auth (`/auth`)](#auth-auth)
+    - [Notifications (`/notifications`)](#notifications-notifications)
+    - [Localization (`/localization`)](#localization-localization)
+    - [Form (`/form`)](#form-form)
+    - [Queries (`/queries`)](#queries-queries)
+    - [Pages (`/pages`)](#pages-pages)
+    - [Providers (`/providers`)](#providers-providers)
+    - [Utilities (`/utiles`)](#utilities-utiles)
+    - [Config (`/config`)](#config-config)
+  - [Entry Points](#entry-points)
+  - [Cross-Platform Support](#cross-platform-support)
+  - [TypeScript Support](#typescript-support)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ---
 
@@ -85,7 +89,11 @@ The **dependency flow** is bottom-up: `state/` is the foundation, `auth/`, `noti
 The `useCoreConfig` hook initializes all modules at once. Call it near the root of your app:
 
 ```tsx
-import { useCoreConfig, AppProviders, QueriesProvider } from "@gaddario98/react-core";
+import {
+  useCoreConfig,
+  AppProviders,
+  QueriesProvider,
+} from "@gaddario98/react-core";
 
 function CoreProvider({ children }: { children: React.ReactNode }) {
   useCoreConfig({
@@ -103,7 +111,9 @@ function CoreProvider({ children }: { children: React.ReactNode }) {
       defaultMetadata: { title: "My App" },
     },
     form: {
-      formFieldContainer: ({ children }) => <div className="field">{children}</div>,
+      formFieldContainer: ({ children }) => (
+        <div className="field">{children}</div>
+      ),
     },
     apiConfig: {
       endpoints: { api: "https://api.example.com" },
@@ -116,15 +126,14 @@ function CoreProvider({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <AppProviders providers={[QueriesProvider]}>
-      <CoreProvider>
-        {/* your app */}
-      </CoreProvider>
+      <CoreProvider>{/* your app */}</CoreProvider>
     </AppProviders>
   );
 }
 ```
 
 `useCoreConfig` automatically:
+
 - Wires `translateText` from the localization module into forms and pages
 - Wires `showNotification` into forms and queries
 - Sets the `Authorization` header from `auth.token` on all API requests
@@ -143,28 +152,29 @@ import { atomStateGenerator } from "@gaddario98/react-core/state";
 
 const {
   atom: themeAtom,
-  useValue: useThemeValue,     // read-only hook
-  useState: useThemeState,     // [value, setter] hook
-  useReset: useThemeReset,     // reset to default
+  useValue: useThemeValue, // read-only hook
+  useState: useThemeState, // [value, setter] hook
+  useReset: useThemeReset, // reset to default
 } = atomStateGenerator<"light" | "dark">({
   key: "app-theme",
   defaultValue: "light",
-  persist: true,  // compressed localStorage persistence
+  persist: true, // compressed localStorage persistence
 });
 ```
 
 **Storage features:**
+
 - Data < 1 KB stored as raw JSON; larger payloads are deflated (fflate) and base64-encoded
 - Writes are debounced (50 ms) and flushed on `beforeunload` / `visibilitychange`
 - Swap the storage backend via `setCustomStorage(myStorage)` (e.g., AsyncStorage for React Native)
 
 **Exports:**
 
-| Export | Description |
-|---|---|
+| Export                           | Description                                                   |
+| -------------------------------- | ------------------------------------------------------------- |
 | `atomStateGenerator<T>(options)` | Creates an atom with `useValue`, `useState`, `useReset` hooks |
-| `storage` | Default compressed storage singleton |
-| `setCustomStorage(s)` | Replace the storage backend |
+| `storage`                        | Default compressed storage singleton                          |
+| `setCustomStorage(s)`            | Replace the storage backend                                   |
 
 ---
 
@@ -177,7 +187,6 @@ import { useAuthState, useAuthValue } from "@gaddario98/react-core/auth";
 
 // Read auth state
 const auth = useAuthValue();
-console.log(auth?.token, auth?.isLogged);
 
 // Update auth state
 const [auth, setAuth] = useAuthState();
@@ -197,7 +206,7 @@ type AuthState = {
   token?: string;
   phoneNumber?: string;
   email?: string;
-}
+};
 ```
 
 The atom is persisted under the key `"reactAuthStore"` using compressed storage.
@@ -235,12 +244,12 @@ interface NotificationMessage {
 
 **Exports:**
 
-| Export | Description |
-|---|---|
-| `useNotification(ns?)` | Returns `{ showNotification, clearNotification }` |
-| `useNotificationValue()` | Read current notification |
-| `useNotificationState()` | `[notification, setter]` tuple |
-| `notificationAtom` | Raw Jotai atom |
+| Export                   | Description                                       |
+| ------------------------ | ------------------------------------------------- |
+| `useNotification(ns?)`   | Returns `{ showNotification, clearNotification }` |
+| `useNotificationValue()` | Read current notification                         |
+| `useNotificationState()` | `[notification, setter]` tuple                    |
+| `notificationAtom`       | Raw Jotai atom                                    |
 
 ---
 
@@ -249,7 +258,10 @@ interface NotificationMessage {
 A built-in i18n engine with no external library dependencies. Supports ICU-style interpolation, pluralization, gender selection, and number/date/currency formatting.
 
 ```tsx
-import { useTranslation, useLocalizationActions } from "@gaddario98/react-core/localization";
+import {
+  useTranslation,
+  useLocalizationActions,
+} from "@gaddario98/react-core/localization";
 
 // Initialize locales at app startup
 const { initializeLocale, switchLocale, addLocale } = useLocalizationActions();
@@ -258,8 +270,17 @@ initializeLocale({
   defaultLocale: "en",
   supportedLocales: ["en", "it"],
   locales: {
-    en: { shop: { items: "{{count, plural, =0{No items} one{1 item} other{# items}}}" } },
-    it: { shop: { items: "{{count, plural, =0{Nessun articolo} one{1 articolo} other{# articoli}}}" } },
+    en: {
+      shop: {
+        items: "{{count, plural, =0{No items} one{1 item} other{# items}}}",
+      },
+    },
+    it: {
+      shop: {
+        items:
+          "{{count, plural, =0{Nessun articolo} one{1 articolo} other{# articoli}}}",
+      },
+    },
   },
 });
 
@@ -269,6 +290,7 @@ t("items", { count: 5 }); // "5 items"
 ```
 
 **Supported interpolation patterns:**
+
 - `{{name}}` — simple variable substitution
 - `{{count, number}}` — number formatting (locale-aware)
 - `{{date, date}}` — date formatting
@@ -306,12 +328,22 @@ interface ContactForm {
       name: "name",
       label: "Full Name",
       rules: { onChange: (val) => (!val ? "Required" : undefined) },
-      component: (props) => <input value={props.value} onChange={(e) => props.onChange(e.target.value)} />,
+      component: (props) => (
+        <input
+          value={props.value}
+          onChange={(e) => props.onChange(e.target.value)}
+        />
+      ),
     },
     {
       name: "email",
       label: "Email",
-      component: (props) => <input value={props.value} onChange={(e) => props.onChange(e.target.value)} />,
+      component: (props) => (
+        <input
+          value={props.value}
+          onChange={(e) => props.onChange(e.target.value)}
+        />
+      ),
     },
   ]}
   submit={[
@@ -320,10 +352,11 @@ interface ContactForm {
       onSuccess: async (values) => console.log(values),
     },
   ]}
-/>
+/>;
 ```
 
 **Key features:**
+
 - Static or dynamic field definitions (factory functions with `{ get, set }` access to current values)
 - Partial form submission — validate only a subset of fields via `values: ["field1", "field2"]`
 - Custom layout containers via `viewSettings` (dialogs, cards, drawers)
@@ -385,6 +418,7 @@ allMutation.addProduct.mutate({ body: { name: "New Product" } });
 ```
 
 **Key features:**
+
 - Typed `allQuery` / `allMutation` / `allWebSocket` maps from the configuration array
 - Automatic Jotai atom sync — query results are accessible cross-component without refetching
 - Fine-grained subscriptions via `useApiValues` (re-render only on specific path changes)
@@ -414,7 +448,7 @@ import { QueriesProvider } from "@gaddario98/react-core/queries";
 
 <QueriesProvider>
   <App />
-</QueriesProvider>
+</QueriesProvider>;
 ```
 
 For full API details, see [github.com/gaddario98/react-queries](https://github.com/gaddario98/react-queries).
@@ -429,7 +463,9 @@ A page orchestrator that composes forms, queries, metadata, lazy loading, and la
 import { PageGenerator } from "@gaddario98/react-core/pages";
 import type { PageProps, QueryDefinition } from "@gaddario98/react-core/pages";
 
-interface MyForm { search: string }
+interface MyForm {
+  search: string;
+}
 type MyQueries = [QueryDefinition<"results", "query", never, Product[]>];
 
 const props: PageProps<MyForm, MyQueries> = {
@@ -465,6 +501,7 @@ const props: PageProps<MyForm, MyQueries> = {
 ```
 
 **Key features:**
+
 - `get()` / `set()` API with automatic dependency tracking (90% fewer re-renders)
 - Dynamic SEO metadata (Open Graph, Twitter Card, JSON-LD, AI hints, robots)
 - Lazy loading with viewport, interaction, or conditional triggers
@@ -491,7 +528,7 @@ import { AppProviders } from "@gaddario98/react-core/providers";
   ]}
 >
   <App />
-</AppProviders>
+</AppProviders>;
 ```
 
 Supports both bare components and `[Component, props]` tuples. Providers are composed in declaration order (first = outermost).
@@ -506,10 +543,10 @@ General-purpose React and JavaScript utilities.
 import { cn, withMemo } from "@gaddario98/react-core/utiles";
 ```
 
-| Export | Description |
-|---|---|
-| `cn(...inputs)` | Combines `clsx` + `tailwind-merge` for safe Tailwind class merging |
-| `withMemo(Component, areEqual?)` | Type-safe `React.memo` wrapper that preserves generic types |
+| Export                                 | Description                                                         |
+| -------------------------------------- | ------------------------------------------------------------------- |
+| `cn(...inputs)`                        | Combines `clsx` + `tailwind-merge` for safe Tailwind class merging  |
+| `withMemo(Component, areEqual?)`       | Type-safe `React.memo` wrapper that preserves generic types         |
 | `createExtractor(data, cache?, keys?)` | Picks a subset of keys from an object with stable reference caching |
 
 ---
@@ -537,13 +574,13 @@ See [Quick Start](#quick-start--unified-configuration) for usage.
 
 **What `useCoreConfig` wires automatically:**
 
-| Source | Target | What |
-|---|---|---|
-| `localization` | `form` | `translateText` function |
-| `notifications` | `form`, `queries` | `showNotification` handler |
-| `auth` | `queries` | `Authorization` header (Bearer token) |
-| `auth` | `queries` | `validateAuthFn` (auth validation) |
-| `auth` | `pages` | `authValues` (access control) |
+| Source          | Target            | What                                  |
+| --------------- | ----------------- | ------------------------------------- |
+| `localization`  | `form`            | `translateText` function              |
+| `notifications` | `form`, `queries` | `showNotification` handler            |
+| `auth`          | `queries`         | `Authorization` header (Bearer token) |
+| `auth`          | `queries`         | `validateAuthFn` (auth validation)    |
+| `auth`          | `pages`           | `authValues` (access control)         |
 
 ---
 
@@ -551,18 +588,18 @@ See [Quick Start](#quick-start--unified-configuration) for usage.
 
 The package exposes 10 sub-path exports for tree-shaking:
 
-| Import Path | Module | Typical Use |
-|---|---|---|
-| `@gaddario98/react-core` | All modules | Full framework access |
-| `@gaddario98/react-core/state` | State | Atom factory, storage |
-| `@gaddario98/react-core/auth` | Auth | Authentication state |
-| `@gaddario98/react-core/notifications` | Notifications | Toast state |
-| `@gaddario98/react-core/localization` | Localization | i18n engine |
-| `@gaddario98/react-core/form` | Form | Form builder |
-| `@gaddario98/react-core/queries` | Queries | Data fetching |
-| `@gaddario98/react-core/pages` | Pages | Page orchestrator |
-| `@gaddario98/react-core/providers` | Providers | Provider compositor |
-| `@gaddario98/react-core/utiles` | Utilities | Helpers |
+| Import Path                            | Module        | Typical Use           |
+| -------------------------------------- | ------------- | --------------------- |
+| `@gaddario98/react-core`               | All modules   | Full framework access |
+| `@gaddario98/react-core/state`         | State         | Atom factory, storage |
+| `@gaddario98/react-core/auth`          | Auth          | Authentication state  |
+| `@gaddario98/react-core/notifications` | Notifications | Toast state           |
+| `@gaddario98/react-core/localization`  | Localization  | i18n engine           |
+| `@gaddario98/react-core/form`          | Form          | Form builder          |
+| `@gaddario98/react-core/queries`       | Queries       | Data fetching         |
+| `@gaddario98/react-core/pages`         | Pages         | Page orchestrator     |
+| `@gaddario98/react-core/providers`     | Providers     | Provider compositor   |
+| `@gaddario98/react-core/utiles`        | Utilities     | Helpers               |
 
 ---
 
@@ -583,15 +620,21 @@ import { View, ScrollView } from "react-native";
 // Swap storage for React Native
 setCustomStorage({
   getItem: (key) => AsyncStorage.getItem(key) ?? null,
-  setItem: (key, val) => { AsyncStorage.setItem(key, val) },
-  removeItem: (key) => { AsyncStorage.removeItem(key) },
+  setItem: (key, val) => {
+    AsyncStorage.setItem(key, val);
+  },
+  removeItem: (key) => {
+    AsyncStorage.removeItem(key);
+  },
 });
 
 // Swap layout containers
 const [, setPageConfig] = usePageConfigState();
 setPageConfig((prev) => ({
   ...prev,
-  PageContainer: ({ children, id }) => <View style={{ flex: 1 }}>{children}</View>,
+  PageContainer: ({ children, id }) => (
+    <View style={{ flex: 1 }}>{children}</View>
+  ),
   BodyContainer: ({ children }) => <ScrollView>{children}</ScrollView>,
   HeaderContainer: ({ children }) => <View>{children}</View>,
   FooterContainer: ({ children }) => <View>{children}</View>,
