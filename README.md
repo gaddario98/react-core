@@ -2,7 +2,7 @@
 
 A modular, type-safe React framework that unifies state management, forms, data fetching, page orchestration, localization, authentication, and notifications into a single cohesive package. Built on Jotai, TanStack Form, and TanStack Query.
 
-**Version**: 2.1.5 | **License**: MIT | **Author**: Giosuè Addario
+**Version**: 2.2.5 | **License**: MIT | **Author**: Giosuè Addario
 
 ---
 
